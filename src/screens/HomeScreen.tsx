@@ -1,10 +1,13 @@
 import React from 'react';
 import { ActivityIndicator, View, Text } from 'react-native';
+import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const HomeScreen = () => {
 
   const {peliculasEnCine, isLoading} = useMovies();
+  const { top } = useSafeAreaInsets();
 
   if(isLoading){
     return(
@@ -16,8 +19,10 @@ export const HomeScreen = () => {
   
 
   return (
-    <View>
-        <Text>Home Screen</Text>
+    <View style={{marginTop: top + 20}}>
+        <MoviePoster 
+          movie={peliculasEnCine[4]}
+        />
     </View>
   )
 }
